@@ -37,7 +37,7 @@ func main() {
 				fmt.Printf("\n\nTortoise alert: Time up!\n")
 				exit(fmt.Sprintf("Your score: %d/%d", score, len(problems)), false)
 			case answer := <-userAnswer :
-				if strings.ToLower(answer) == problem.ans {
+				if sanitizeString(answer) == problem.ans {
 					score++
 				}
 		}
@@ -74,10 +74,14 @@ func parseQuestions(questions [][]string) []problem {
 	for i, question := range questions {
 		parsed[i] = problem {
 			ques: question[0],
-			ans: strings.ToLower(strings.TrimSpace(question[1])),
+			ans: sanitizeString(question[1]),
 		}
 	}
 	return parsed
+}
+
+func sanitizeString(str string) string {
+	return strings.ToLower(strings.TrimSpace(str))
 }
 
 func exit(msg string, error bool) {
