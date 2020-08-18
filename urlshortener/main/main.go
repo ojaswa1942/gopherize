@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	".."
+	"github.com/ojaswa1942/gopherize/urlshortener"
 )
 
 func main() {
@@ -29,8 +29,22 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// Build the JSONHandler using the YAMLHandler as the
+	// fallback
+	json := `[
+		{"Path": "/site", "URL": "https://ojaswa.com"},
+		{"Path": "/git", "URL": "https://github.com/ojaswa1942"},
+		{"Path": "/connect", "URL": "https://linkedin.com/in/ojaswa23"}
+	]`
+
+	jsonHandler, errr := urlshortener.JSONHandler([]byte(json), yamlHandler)
+	if errr != nil {
+		panic(errr)
+	}
+
 	fmt.Println("Starting the server on :8080")
-	http.ListenAndServe(":8080", yamlHandler)
+	http.ListenAndServe(":8080", jsonHandler)
 }
 
 func defaultMux() *http.ServeMux {

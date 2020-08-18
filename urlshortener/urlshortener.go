@@ -3,6 +3,7 @@ package urlshortener
 import (
 	"net/http"
 	"gopkg.in/yaml.v2"
+	"encoding/json"
 )
 
 func MapHandler(pathsToUrls map[string]string, fallback http.Handler) http.HandlerFunc {
@@ -29,9 +30,28 @@ func YAMLHandler(yml []byte, fallback http.Handler) (http.HandlerFunc, error) {
 	return MapHandler(pathsToUrls, fallback), nil
 }
 
+func JSONHandler(jsonString []byte, fallback http.Handler) (http.HandlerFunc, error) {
+	pathUrls, err := parseJSON(jsonString)
+	if err != nil {
+		return nil, err
+	}
+
+	pathsToUrls := createMap(pathUrls)
+	
+	return MapHandler(pathsToUrls, fallback), nil
+}
+
 func parseYml(yml []byte) ([]path, error) {
 	var pathUrls []path
 	if err := yaml.Unmarshal(yml, &pathUrls); err != nil {
+		return nil, err
+	}
+	return pathUrls, nil
+}
+
+func parseJSON(jsonString []byte) ([]path, error) {
+	var pathUrls []path
+	if err := json.Unmarshal(jsonString, &pathUrls); err != nil {
 		return nil, err
 	}
 	return pathUrls, nil
