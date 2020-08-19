@@ -108,5 +108,12 @@
       "Your little gopher buddy thanks you for taking him on an adventure. Perhaps next year you can look into travelling abroad - you have both heard that gophers are all the rage in China."
     ],
     "options": []
+  },
+  "custom-test-key": {
+    "title": "Test Me Senpai",
+    "story": [
+      "Your little gopher buddy thanks you for taking him on an adventure."
+    ],
+    "options": []
   }
 }

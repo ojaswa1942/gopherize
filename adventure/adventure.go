@@ -116,12 +116,6 @@ func WithURLPrefix(urlPrefix string) HandlerOption {
 	}
 }
 
-// Not efficient for conditional arguments
-// type HandlerOptions struct {
-// 	t *template.Template
-// 	ParseFunc func(r *http.Request) string
-// }
-
 func DecodeJSONStory(r io.Reader) (Story, error) {
 	decoder := json.NewDecoder(r)
 	var story Story
@@ -130,7 +124,6 @@ func DecodeJSONStory(r io.Reader) (Story, error) {
 	}
 	return story, nil
 }
-
 
 type handler struct {
 	s Story
@@ -168,7 +161,7 @@ func defaultPathFn(r *http.Request) (string) {
 	if path == "" || path == "/" {
 		path = "/intro"
 	}
-	path = path[1:]
+	path = strings.TrimSpace(path[1:])
 	return path
 }
 
