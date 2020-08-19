@@ -16,3 +16,7 @@ A program (package) that forwards paths to other URLs (similar to Bitly).
 - contains unit tests
 - Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
 
+### Choose Your Own Adventure
+A package to create a web application to render "choose your own adventure" books 
+- with unit tests
+- Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
