@@ -1,15 +1,14 @@
 package main
 
 import (
-	// "github.com/ojaswa1942/gopherize/linkparser"
-	"../.."
+	"github.com/ojaswa1942/gopherize/linkparser"
 	"fmt"
 	"flag"
 	"os"
 )
 
 func main() {
-	filename := flag.String("html", "hmtl_samples/ex1.html", "json file containing cyoa story")
+	filename := flag.String("html", "html_samples/ex1.html", "json file containing cyoa story")
 	flag.Parse()
 
 	htmlFile := openFile(*filename)

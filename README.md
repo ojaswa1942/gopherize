@@ -25,5 +25,5 @@ A package to create a web application to render "choose your own adventure" book
 ### Link Parser
 A package to parse and extract all links off a HTML file 
 - `cmd/parse` depicts a sample usage of the created package `linkparser`
-- with some unit tests
+- contains unit & integration tests
 - Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).

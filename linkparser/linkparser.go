@@ -29,16 +29,16 @@ func ParseLinks(r io.Reader) ([]Link, error) {
 
 // A generic function to find some ElementNode
 func searchElement(node *html.Node, elem string) []*html.Node {
+	answerNodes := make([]*html.Node, 0)
 	if node == nil {
-		return []*html.Node{}
+		return answerNodes
 	}
 
 	if node.Type == html.ElementNode && node.Data == elem {
-		return []*html.Node{node}
+		answerNodes = append(answerNodes, node)
 	}
 
 	// DFS for each child node
-	answerNodes := make([]*html.Node, 0)
 	for child := node.FirstChild; child != nil; child = child.NextSibling {
 		childSlice := searchElement(child, elem)
 		answerNodes = append(answerNodes, childSlice...)
@@ -70,16 +70,16 @@ func extractHref(node *html.Node) (string) {
 
 // given a node, extracts text within it
 func extractText(node *html.Node) string {
+	text := ""
 	if node == nil {
-		return ""
+		return text
 	}
 
 	if node.Type == html.TextNode {
-		return node.Data
+		text += node.Data
 	}
 
 	// DFS for each child node
-	text := ""
 	for child := node.FirstChild; child != nil; child = child.NextSibling {
 		childText := extractText(child)
 		text += childText
