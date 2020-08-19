@@ -1,12 +1,14 @@
 package main
 
 import (
+	"github.com/ojaswa1942/gopherize/adventure"
 	"fmt"
 	"flag"
 	"os"
 	"log"
 	"net/http"
-	"../.."
+	"html/template"
+	"strings"
 )
 
 func main() {
@@ -19,8 +21,13 @@ func main() {
 	if err != nil {
 		exit(fmt.Sprintf("error parsing json: %s", err), true)
 	}
+	customTemplate := template.Must(template.New("").Parse("Hello yo !"))
+	_ = customTemplate
+	_ = customPathFn
+	// h := adventure.NewHandler(story, adventure.WithTemplate(customTemplate))
+	// h := adventure.NewHandler(story, adventure.WithPathFn(customPathFn), adventure.WithURLPrefix("/story"))
 	h := adventure.NewHandler(story)
-	fmt.Printf("Starting server on port %d", *port)
+	fmt.Printf("Starting server on port %d\n", *port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), h))
 }
 
@@ -31,6 +38,16 @@ func openFile(filename string) *os.File {
 	}
 	return file
 }
+
+func customPathFn(r *http.Request) (string) {
+	path := strings.TrimSpace(r.URL.Path)
+	if path == "/story" || path == "/story/" {
+		path = "story/intro"
+	}
+	path = path[len("story/"):]
+	return path
+}
+
 
 func exit(msg string, error bool) {
 	fmt.Println(msg)
