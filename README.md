@@ -31,5 +31,5 @@ A package to parse and extract all links off a HTML file
 ### Sitemap Builder
 A program to generate sitemap for an URL 
 - uses the created [`linkparser`](#link-parser) package to generate links
-- contains unit & integration tests
+- contains some unit tests
 - Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
