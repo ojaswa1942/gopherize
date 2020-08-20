@@ -27,3 +27,9 @@ A package to parse and extract all links off a HTML file
 - `cmd/parse` depicts a sample usage of the created package `linkparser`
 - contains unit & integration tests
 - Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
+
+### Sitemap Builder
+A program to generate sitemap for an URL 
+- uses the created [`linkparser`](#link-parser) package to generate links
+- contains unit & integration tests
+- Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
