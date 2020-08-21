@@ -33,3 +33,9 @@ A program to generate sitemap for an URL
 - uses the created [`linkparser`](#link-parser) package to generate links
 - contains some unit tests
 - Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
+
+### Task Manager
+A CLI utility tool to help you manage your tasks (todos) on-the-go. 
+- uses `cobra` for CLI interactions
+- uses `boltDB` as database
+- Inspiration: Go Coding Exercises by [Jon Calhoun](https://courses.calhoun.io/courses/cor_gophercises).
